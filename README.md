@@ -12,7 +12,13 @@ Git Hub: [DiveLog](https://github.com/oldgregg89/Divelog)
 
 This application keeps track of the dives a suba diver would make as well an API the shows local dive sites for future adventures. 
 
-![]()
+![Dive Table](images/tableLG.jpg)
+
+Instructions on how to use the dive table: [Dive-Table](https://www.instructables.com/id/Reading-Dive-Tables/)
+
+
+App hierarchy:
+![hierarchy](images/higherarc.png)
 
 
 ## Setup/Installation Requirements
