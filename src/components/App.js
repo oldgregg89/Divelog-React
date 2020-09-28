@@ -7,7 +7,7 @@ function App(){
   return (
     <React.Fragment>
         <Header />
-      <Container style={{backgroundColor: 'blue', marginTop: '150px'}}>
+      <Container style={{backgroundImage: `images/pexels-francesco-ungaro.jpg`, marginTop: '150px'}}>
         <DiveLogControl />
       </Container>
     </React.Fragment>
