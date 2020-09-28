@@ -122,8 +122,8 @@ class DiveLogControl extends React.Component {
 }
 
 DiveLogControl.propTypes = {
-  LogList: state.LogList,
-    LocationList: state.LocationList
+  LogList: PropTypes.object,
+  LocationList: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
