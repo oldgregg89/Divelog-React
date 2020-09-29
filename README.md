@@ -24,8 +24,21 @@ App hierarchy:
 ## Setup/Installation Requirements
 
 * run `npm install`
-* add in API key in ....
-* 
+* create a `.env` file
+* add in your credentials for firestore in `.env` in this format 
+```
+REACT_APP_FIREBASE_API_KEY = "YOUR-UNIQUE-CREDENTIALS"
+REACT_APP_FIREBASE_AUTH_DOMAIN = "YOUR-PROJECT-NAME.firebaseapp.com"
+REACT_APP_FIREBASE_DATABASE_URL = "https://YOUR-PROJECT-NAME.firebaseio.com"
+REACT_APP_FIREBASE_PROJECT_ID = "YOUR-PROJECT-FIREBASE-PROJECT-ID"
+REACT_APP_FIREBASE_STORAGE_BUCKET = "YOUR-PROJECT-NAME.appspot.com"
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID = "YOUR-PROJECT-SENDER-ID"
+REACT_APP_FIREBASE_APP_ID = "YOUR-PROJECT-APP-ID"
+```
+* then run `npm run start` to boot up the web application
+* If all the directions are followed you should see this homepage:
+
+![]()
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
