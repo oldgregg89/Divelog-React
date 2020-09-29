@@ -6,7 +6,7 @@ function DiveLogList(props){
   return (
     <React.Fragment>
       <hr/>
-      {props.LogList.map((diveLog) =>
+      {Object.values(props.LogList).map((diveLog) =>
         <DiveLog
         whenDiveLogClicked = { props.onDiveLogSelection }
         location={diveLog.location}

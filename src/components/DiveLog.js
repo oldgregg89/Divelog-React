@@ -5,11 +5,7 @@ function DiveLog(props){
   return(
     <React.Fragment>
       <div onClick = {() => props.whenDiveLogClicked(props.id)}>
-        <h3>{props.depth} - {props.location} - {props.date}-{props.time}</h3>
-        <p><em>{props.time2}- {props.depth2}</em></p>
-        <p><em>{props.time3}- {props.depth3}</em></p>
-        <p><em>{props.time4}- {props.depth4}</em></p>
-        <p><em>{props.notes}</em></p>
+        <h3>{props.depth}ft - {props.location} - {props.date}-{props.time}hr</h3>
         <hr/>
       </div>
     </React.Fragment>

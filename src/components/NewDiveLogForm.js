@@ -13,7 +13,7 @@ function NewDiveLogForm(props){
   return (
     <React.Fragment>
       <ReusableForm
-      formSubmissionHandler={handleNewFormSubmission}
+      formSubmissionHandler={handleNewDiveLogFormSubmission}
       buttonText="Add Dive Log!" />
     </React.Fragment>
   );
