@@ -136,13 +136,14 @@ class DiveLogControl extends React.Component {
     let CurrentVisibleState = null;
     let buttonText = null;
     if (FormSwitch === true) {
-      CurrentVisibleState = <NewDiveLogForm></NewDiveLogForm>
+      CurrentVisibleState = <NewDiveLogForm onNewDiveLogCreation={this.handleAddNewLog}></NewDiveLogForm>
       buttonText = "add new log"
     } else if (SelectedItem !== null) {
       CurrentlyVisibleState = <DiveLogDetail diveLog={SelectedItem} onClickingEdit={this.handleEditLog}></DiveLogDetail>
       buttonText = "return"
     } else {
       CurrentVisibleState = <DiveLogList LogList={this.props.LogList} onClickingDelete={this.handleDeleteLog} onDiveLogSelection={this.handleChangeSelectedLog}></DiveLogList>
+      buttonText = "return"
     }
     return (
       <React.Fragment>
