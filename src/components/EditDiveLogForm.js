@@ -13,7 +13,7 @@ function EditDiveLogForm(props){
     <React.Fragment>
       <ReusableForm 
         formSubmissionHandler={handleEditDiveLogFormSubmission}
-        buttonText="Update Keg" />
+        buttonText="Update" />
     </React.Fragment>
   );
 }

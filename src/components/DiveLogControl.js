@@ -1,24 +1,37 @@
 import React from "react";
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
+import DiveLogList from "./DiveLogList"
+import NewDiveLogForm from "./NewDiveLogForm"
+import DiveLogDetail from "./DiveLogDetail"
 
 class DiveLogControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       FormSwitch: false,
-      SelectedItem: false,
+      SelectedItem: null,
       editing: false
     }
   }
 
   handleAddNewLog = (newLog) => {
     const { dispatch } = this.props;
-    const { id } = newLog;
+    const { id, location, date, time, time2, time3, time4, depth, depth2, depth3, depth4, notes } = newLog;
     const action = {
       type: 'ADD_LOG',
       id: id,
-      //fill the rest in
+      location: location,
+      date: date,
+      time: time,
+      time2: time2,
+      time3: time3,
+      time4: time4,
+      depth: depth,
+      depth2: depth2,
+      depth3: depth3,
+      depth4: depth4,
+      notes: notes
     }
     dispatch(action);
     this.setState({FormSwitch: false});
@@ -38,11 +51,21 @@ class DiveLogControl extends React.Component {
 
   handleEditLog = (logToEdit) => {
     const { dispatch } = this.props;
-    const { id } = logToEdit;
+    const { id, location, date, time, time2, time3, time4, depth, depth2, depth3, depth4, notes } = logToEdit;
     const action = {
       type: 'ADD_LOG',
       id: id,
-      //fill the rest in
+      location: location,
+      date: date,
+      time: time,
+      time2: time2,
+      time3: time3,
+      time4: time4,
+      depth: depth,
+      depth2: depth2,
+      depth3: depth3,
+      depth4: depth4,
+      notes: notes
     }
     dispatch(action);
     this.setState({
@@ -75,7 +98,7 @@ class DiveLogControl extends React.Component {
     dispatch(action);
     this.setState({SelectedItem: null});
   }
-  
+
   handleDeleteLocation = (id) => {
     const { dispatch } = this.props;
     const action = {
@@ -112,6 +135,15 @@ class DiveLogControl extends React.Component {
   render() {
     let CurrentVisibleState = null;
     let buttonText = null;
+    if (FormSwitch === true) {
+      CurrentVisibleState = <NewDiveLogForm></NewDiveLogForm>
+      buttonText = "add new log"
+    } else if (SelectedItem !== null) {
+      CurrentlyVisibleState = <DiveLogDetail diveLog={SelectedItem} onClickingEdit={this.handleEditLog}></DiveLogDetail>
+      buttonText = "return"
+    } else {
+      CurrentVisibleState = <DiveLogList LogList={this.props.LogList} onClickingDelete={this.handleDeleteLog} onDiveLogSelection={this.handleChangeSelectedLog}></DiveLogList>
+    }
     return (
       <React.Fragment>
         {CurrentVisibleState}

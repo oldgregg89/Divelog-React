@@ -28,7 +28,7 @@ function DiveLogList(props){
 }
 
 DiveLogList.propTypes = {
-  diveLogList: PropTypes.array,
+  LogList: PropTypes.object,
   onDiveLogSelection: PropTypes.func
 };
 
