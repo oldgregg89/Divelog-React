@@ -18,7 +18,7 @@ function DiveLogDetail(props){
       <p><em><strong>Time under water for fourth dive:</strong>{props.diveLog.time4}hr</em></p>
       <p><em><strong>Notes on Dive:</strong>{props.diveLog.notes}</em></p>
 
-      <Button style={{margin: 10}} variant="success" onClick={ props.onClickingEdit }>Edit Dive</Button>
+      <Button style={{margin: 10}} variant="success" onClick={props.onClickingEdit}>Edit Dive</Button>
       <Button variant="danger" onClick={() => props.onClickingDelete(props.diveLog.id) }>Delete Dive Log</Button>
       <hr/>
     </React.Fragment>

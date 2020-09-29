@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 import DiveLogList from "./DiveLogList"
 import NewDiveLogForm from "./NewDiveLogForm"
 import DiveLogDetail from "./DiveLogDetail"
+import EditDiveLogForm from "./EditDiveLogForm"
 
 class DiveLogControl extends React.Component {
   constructor(props) {
@@ -70,7 +71,7 @@ class DiveLogControl extends React.Component {
     dispatch(action);
     this.setState({
       editing: false,
-      selectedTicket: null
+      SelectedItem: null
     });
   }
 
@@ -85,7 +86,7 @@ class DiveLogControl extends React.Component {
     dispatch(action);
     this.setState({
       editing: false,
-      selectedTicket: null
+      SelectedItem: null
     });
   }
 
@@ -119,6 +120,8 @@ class DiveLogControl extends React.Component {
     this.setState({SelectedItem: selectedLocation});
   }
 
+// switch view buttons
+
   handleClick = () => {
     if (this.state.SelectedItem != null) {  // Might need to refactor this line because why set SelectedItem back to null??
       this.setState({
@@ -132,23 +135,31 @@ class DiveLogControl extends React.Component {
     }
   }
 
+  handleClickEdit = (id) => {
+    this.setState({
+      editing: true
+    })
+  }
+
   render() {
     let CurrentVisibleState = null;
     let buttonText = null;
-    if (this.state.FormSwitch === true) {
+    if (this.state.editing) {
+      CurrentVisibleState = <EditDiveLogForm onEditDiveLog={this.handleEditLog} diveLog={this.state.SelectedItem}></EditDiveLogForm>
+    } else if (this.state.SelectedItem !== null) {
+      CurrentVisibleState = <DiveLogDetail diveLog={this.state.SelectedItem} onClickingDelete={this.handleDeleteLog} onClickingEdit={this.handleClickEdit}></DiveLogDetail>
+      buttonText = "return"
+    } else if (this.state.FormSwitch === true) {
       CurrentVisibleState = <NewDiveLogForm onNewDiveLogCreation={this.handleAddNewLog}></NewDiveLogForm>
       buttonText = "return"
-    } else if (this.state.SelectedItem !== null) {
-      CurrentVisibleState = <DiveLogDetail diveLog={this.state.SelectedItem} onClickingDelete={this.handleDeleteLog} onClickingEdit={this.handleEditLog}></DiveLogDetail>
-      buttonText = "return"
-    } else {
+    }  else {
       CurrentVisibleState = <DiveLogList LogList={this.props.LogList} onDiveLogSelection={this.handleChangeSelectedLog}></DiveLogList>
       buttonText = "add dive log"
     }
     return (
       <React.Fragment>
         {CurrentVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
+        <button variant="primary" onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }

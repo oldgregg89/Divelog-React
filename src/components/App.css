@@ -1,0 +1,27 @@
+
+.App {
+  text-align: center;
+  background-image: url(https://images.pexels.com/photos/3828753/pexels-photo-3828753.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+}
+
+.container{
+  background-image: url(https://images.pexels.com/photos/932638/pexels-photo-932638.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: bisque;
+  border-radius: 20px;
+  opacity: 80%;
+}
+
+.h1{
+  text-align: center;
+}
+
+body{
+  background-image: url(https://images.pexels.com/photos/3361052/pexels-photo-3361052.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-color: black;
+  text-align: center;
+  color: black;
+}
