@@ -9,6 +9,7 @@ function EditDiveLogForm(props){
   function handleEditDiveLogFormSubmission(event) {
       event.preventDefault();
       props.onEditDiveLog();
+      console.log("here")
       const propertiesToUpdate = {
         location: event.target.location.value, 
         depth: event.target.depth.value, 

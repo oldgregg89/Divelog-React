@@ -5,8 +5,10 @@ import DiveLogList from "./DiveLogList"
 import NewDiveLogForm from "./NewDiveLogForm"
 import DiveLogDetail from "./DiveLogDetail"
 import EditDiveLogForm from "./EditDiveLogForm"
-import { withFirestore } from 'react-redux-firebase'
 import * as c from '../actions';
+import { withFirestore, isLoaded } from 'react-redux-firebase';
+// import button from "react-bootstrap/Button";
+
 
 class DiveLogControl extends React.Component {
   constructor(props) {
@@ -58,7 +60,7 @@ class DiveLogControl extends React.Component {
   handleEditLog = () => {
     this.setState({
       editing: false,
-      selectedDiveLog: null
+      SelectedItem: null
     });
     // const { dispatch } = this.props;
     // const { id, location, date, time, time2, time3, time4, depth, depth2, depth3, depth4, notes } = logToEdit;
@@ -172,18 +174,35 @@ class DiveLogControl extends React.Component {
   render() {
     let CurrentVisibleState = null;
     let buttonText = null;
-    if (this.state.editing) {
-      CurrentVisibleState = <EditDiveLogForm onEditDiveLog={this.handleEditLog} diveLog={this.state.SelectedItem}></EditDiveLogForm>
-      buttonText = "Placeholder"
-    } else if (this.state.SelectedItem !== null) {
-      CurrentVisibleState = <DiveLogDetail diveLog={this.state.SelectedItem} onClickingDelete={this.handleDeleteLog} onClickingEdit={this.handleClickEdit}></DiveLogDetail>
-      buttonText = "return"
-    } else if (this.props.FormSwitch) {
-      CurrentVisibleState = <NewDiveLogForm onNewDiveLogCreation={this.handleAddNewLog}></NewDiveLogForm>
-      buttonText = "return"
-    }  else {
-      CurrentVisibleState = <DiveLogList LogList={this.props.LogList} onDiveLogSelection={this.handleChangeSelectedLog}></DiveLogList>
-      buttonText = "add dive log"
+    const auth = this.props.firebase.auth();
+    if (!isLoaded(auth)) {
+      return (
+        <React.Fragment>
+          <h1>Loading...</h1>
+        </React.Fragment>
+      )
+    }
+    if ((isLoaded(auth)) && (auth.currentUser == null)) {
+      return (
+        <React.Fragment>
+          <h3>You need to be signed in in order to view this queue</h3>
+        </React.Fragment>
+      )
+    } 
+    if ((isLoaded(auth)) && (auth.currentUser != null)) {
+      if (this.state.editing) {
+        CurrentVisibleState = <EditDiveLogForm onEditDiveLog={this.handleEditLog} diveLog={this.state.SelectedItem}></EditDiveLogForm>
+        buttonText = "Placeholder"
+      } else if (this.state.SelectedItem !== null) {
+        CurrentVisibleState = <DiveLogDetail diveLog={this.state.SelectedItem} onClickingDelete={this.handleDeleteLog} onClickingEdit={this.handleClickEdit}></DiveLogDetail>
+        buttonText = "return"
+      } else if (this.props.FormSwitch) {
+        CurrentVisibleState = <NewDiveLogForm onNewDiveLogCreation={this.handleAddNewLog}></NewDiveLogForm>
+        buttonText = "return"
+      }  else {
+        CurrentVisibleState = <DiveLogList LogList={this.props.LogList} onDiveLogSelection={this.handleChangeSelectedLog}></DiveLogList>
+        buttonText = "add dive log"
+      }
     }
     return (
       <React.Fragment>
