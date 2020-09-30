@@ -1,9 +1,9 @@
 import * as c from './../actions/ActionTypes';
 
-// export const addSurvey = id => ({
-//   type: c.ADD_SURVEY,
-//   id
-// })
+export const addSurvey = id => ({
+  type: c.ADD_SURVEY,
+  id
+})
 
 export const deleteDiveLog = id => ({
   type: c.DELETE_DIVELOG,
@@ -11,7 +11,7 @@ export const deleteDiveLog = id => ({
 })
 
 export const toggleForm = () => ({
-  type:c.TOGGLE_FORM
+  type: c.TOGGLE_FORM
 });
 
 export const updateTIme = (id, formattedWaitTime) => ({
