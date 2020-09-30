@@ -6,20 +6,21 @@ import NewDiveLogForm from "./NewDiveLogForm"
 import DiveLogDetail from "./DiveLogDetail"
 import EditDiveLogForm from "./EditDiveLogForm"
 import { withFirestore } from 'react-redux-firebase'
+import * as c from '../actions';
 
 class DiveLogControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      FormSwitch: false,
       SelectedItem: null,
       editing: false
     }
   }
 
   handleAddNewLog = (newLog) => {
+    console.log("working")
     const { dispatch } = this.props;
-    const action = a.toggleForm();
+    const action = c.toggleForm();
     dispatch(action);
     // const { dispatch } = this.props;
     // const { id, location, date, time, time2, time3, time4, depth, depth2, depth3, depth4, notes } = newLog;
@@ -100,7 +101,7 @@ class DiveLogControl extends React.Component {
 
   handleDeleteLog = (id) => {
     this.props.firestore.delete({collection: "diveLog", doc: id});
-    this.setState({selectedDiveLog: null});
+    this.setState({SelectedItem: null});
     // const { dispatch } = this.props;
     // const action = {
     //   type: 'DELETE_LOG',
@@ -138,7 +139,7 @@ class DiveLogControl extends React.Component {
         notes: diveLog.get("notes"),
         id: diveLog.id
       }
-      this.setState({SelectedItem: firestoreItem });
+      this.setState({SelectedItem: firestoreDiveLog });
     });
   }
 
@@ -152,13 +153,13 @@ class DiveLogControl extends React.Component {
   handleClick = () => {
     if (this.state.SelectedItem != null) {  // Might need to refactor this line because why set SelectedItem back to null??
       this.setState({
-        FormSwitch: false,
+        editing: false,
         SelectedItem: null
       });
     } else {
-      this.setState(prevState => ({
-        FormSwitch: !prevState.FormSwitch
-      }));
+      const { dispatch } = this.props
+      const action = c.toggleForm()
+      dispatch(action)
     }
   }
 
@@ -173,10 +174,11 @@ class DiveLogControl extends React.Component {
     let buttonText = null;
     if (this.state.editing) {
       CurrentVisibleState = <EditDiveLogForm onEditDiveLog={this.handleEditLog} diveLog={this.state.SelectedItem}></EditDiveLogForm>
+      buttonText = "Placeholder"
     } else if (this.state.SelectedItem !== null) {
       CurrentVisibleState = <DiveLogDetail diveLog={this.state.SelectedItem} onClickingDelete={this.handleDeleteLog} onClickingEdit={this.handleClickEdit}></DiveLogDetail>
       buttonText = "return"
-    } else if (this.state.FormSwitch === true) {
+    } else if (this.props.FormSwitch) {
       CurrentVisibleState = <NewDiveLogForm onNewDiveLogCreation={this.handleAddNewLog}></NewDiveLogForm>
       buttonText = "return"
     }  else {
@@ -200,9 +202,10 @@ DiveLogControl.propTypes = {
 const mapStateToProps = (state) => {
   return {
     LogList: state.LogList,
-    LocationList: state.LocationList
+    LocationList: state.LocationList,
+    FormSwitch: state.FormSwitch
   }
 }
 
 DiveLogControl = connect(mapStateToProps)(DiveLogControl)
-export default withFireStore(DiveLogControl);
+export default withFirestore(DiveLogControl);

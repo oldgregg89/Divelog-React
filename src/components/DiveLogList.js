@@ -9,14 +9,14 @@ function DiveLogList(props){
     { collection: 'diveLog' }
   ]);
 
-  const diveLog = useSelector(state => state.firestore.ordered.diveLog);
+  const diveLogs = useSelector(state => state.firestore.ordered.diveLog);
 
-  if (isLoaded(diveLog)) {
+  if (isLoaded(diveLogs)) {
 
     return (
       <React.Fragment>
         <hr/>
-        {Object.values(props.LogList).map((diveLog) => {
+        {diveLogs.map((diveLog) => {
           return <DiveLog
           whenDiveLogClicked = { props.onDiveLogSelection }
           location={diveLog.location}
