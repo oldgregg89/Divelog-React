@@ -1,12 +1,26 @@
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
+// import Navbar from "react-bootstrap/Navbar";
+// import Nav from "react-bootstrap/Nav";
+// import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router-dom";
+// import Button from "react-bootstrap/Button";
 
 function Header(props) {
   return (
     <React.Fragment>
-      <Navbar.Brand href = "#home"><h1>Dive Log Tracker/Planner</h1></Navbar.Brand>
+      <h1>Dive Log Tracker</h1>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/signin">Sign In</Link>
+        </li>
+        <li>
+          <Link to="/signin">Sign Out</Link>
+        </li>
+      </ul>
+      {/* <Navbar.Brand href = "#home"><h1>Dive Log Tracker/Planner</h1></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className ="mr-auto">
@@ -20,7 +34,7 @@ function Header(props) {
             <NavDropdown.Item href="#action/3.4">diffrent link</NavDropdown.Item>
           </NavDropdown>
         </Nav>
-      </Navbar.Collapse>
+      </Navbar.Collapse> */}
     </React.Fragment>
   );
 }
