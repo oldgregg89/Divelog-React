@@ -5,14 +5,15 @@ import { useFirestore } from 'react-redux-firebase';
 
 function EditDiveLogForm(props){
   const { diveLog } = props
-    event.preventDefault();
-    const firestore = useFirestore();
-    function handleEditDiveLogFormSubmission(event) {
+  const firestore = useFirestore();
+  function handleEditDiveLogFormSubmission(event) {
+      event.preventDefault();
       props.onEditDiveLog();
       const propertiesToUpdate = {
         location: event.target.location.value, 
         depth: event.target.depth.value, 
-        date: event.target.date.value, time: event.target.time.value, 
+        date: event.target.date.value,
+        time: event.target.time.value, 
         depth2: event.target.depth2.value, 
         time2: event.target.time2.value, 
         depth3: event.target.depth3.value, 

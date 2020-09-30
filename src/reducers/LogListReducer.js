@@ -1,8 +1,10 @@
+import * as c from './../actions/ActionTypes';
+
 export default (state = {}, action) => {
   const { id, location, date, time, time2, time3, time4, depth, depth2, depth3, depth4, notes } = action;
 
   switch (action.type) {
-    case 'ADD_LOG':
+    case c.ADD_DIVELOG:
       return Object.assign({}, state, {
         [id]: {
           id: id,
@@ -19,7 +21,7 @@ export default (state = {}, action) => {
           notes: notes
         }
       })
-    case 'DELETE_LOG':
+    case c.DELETE_DIVELOG:
       const newState = { ...state };
       delete newState[id];
       return newState;
