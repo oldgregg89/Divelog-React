@@ -7,7 +7,7 @@ import DiveLogDetail from "./DiveLogDetail"
 import EditDiveLogForm from "./EditDiveLogForm"
 import * as c from '../actions';
 import { withFirestore, isLoaded } from 'react-redux-firebase';
-import button from "react-bootstrap/Button";
+// import button from "react-bootstrap/Button";
 
 
 class DiveLogControl extends React.Component {
