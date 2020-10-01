@@ -38,7 +38,7 @@ REACT_APP_FIREBASE_APP_ID = "YOUR-PROJECT-APP-ID"
 * then run `npm run start` to boot up the web application
 * If all the directions are followed you should see this homepage:
 
-![]()
+![homescreen](/images/homescreen2.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
