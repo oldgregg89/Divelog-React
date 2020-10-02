@@ -1,34 +1,37 @@
 import firebase from "firebase/app";
 import React from "react";
-import button from "react-bootstrap/Button";
+import { withRouter } from 'react-router-dom';
+// import button from "react-bootstrap/Button";
 
-function Signin() {
-  function doSignUp(event) {
+function Signin(props) {
+  const doSignUp = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
     firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
       console.log("successfully signed up!");
+      props.history.push("/")
     }).catch(function(error) {
       console.log(error.message);
     });
-    
   }
 
-  function doSignIn(event) {
+  const doSignIn = (event) => {
     event.preventDefault();
     const email = event.target.signinEmail.value;
     const password = event.target.signinPassword.value;
     firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
       console.log("Successfully signed in!");
+      props.history.push("/")
     }).catch(function(error) {
       console.log(error.message);
     });
   }
 
-  function doSignOut() {
+  const doSignOut = () => {
     firebase.auth().signOut().then(function() {
       console.log("Successfully signed out!");
+      this.props.history.push("/")
     }).catch(function(error) {
       console.log(error.message);
     });
@@ -66,4 +69,4 @@ return (
   )
 }
 
-export default Signin
+export default withRouter(Signin)
